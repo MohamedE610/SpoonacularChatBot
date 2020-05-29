@@ -1,4 +1,4 @@
-package com.emiratesauction.spoonacularchatbot
+package com.spoonacularchatbot
 
 import org.junit.Test
 

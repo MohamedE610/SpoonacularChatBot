@@ -1,8 +1,8 @@
-package com.emiratesauction.spoonacularchatbot.features.splash.presentation.view.activity
+package com.spoonacularchatbot.features.splash.presentation.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.emiratesauction.spoonacularchatbot.R
+import com.spoonacularchatbot.R
 
 class SplashActivity : AppCompatActivity() {
 

@@ -1,10 +1,10 @@
-package com.emiratesauction.spoonacularchatbot.core.data.local.model
+package com.spoonacularchatbot.core.data.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.emiratesauction.spoonacularchatbot.core.data.local.db.DBConverters
+import com.spoonacularchatbot.core.data.local.db.DBConverters
 
 @Entity(tableName = "QuestionEntity")
 data class QuestionEntity constructor(

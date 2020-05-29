@@ -1,7 +1,7 @@
-package com.emiratesauction.spoonacularchatbot.core.data.local.db
+package com.spoonacularchatbot.core.data.local.db
 
 import androidx.room.TypeConverter
-import com.emiratesauction.spoonacularchatbot.core.data.local.model.QuestionEntity
+import com.spoonacularchatbot.core.data.local.model.QuestionEntity
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 

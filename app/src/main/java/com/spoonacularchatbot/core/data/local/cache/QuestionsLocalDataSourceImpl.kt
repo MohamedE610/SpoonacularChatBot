@@ -1,7 +1,7 @@
-package com.emiratesauction.spoonacularchatbot.core.data.local.cache
+package com.spoonacularchatbot.core.data.local.cache
 
-import com.emiratesauction.spoonacularchatbot.core.data.local.dao.QuestionDao
-import com.emiratesauction.spoonacularchatbot.core.data.local.model.QuestionEntity
+import com.spoonacularchatbot.core.data.local.dao.QuestionDao
+import com.spoonacularchatbot.core.data.local.model.QuestionEntity
 import javax.inject.Inject
 
 class QuestionsLocalDataSourceImpl @Inject constructor(private val questionDao: QuestionDao) :

@@ -1,4 +1,4 @@
-package com.emiratesauction.spoonacularchatbot.core.data.local.sharedpref
+package com.spoonacularchatbot.core.data.local.sharedpref
 
 import android.content.SharedPreferences
 

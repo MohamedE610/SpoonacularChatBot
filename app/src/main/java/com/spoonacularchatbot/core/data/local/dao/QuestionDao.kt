@@ -1,10 +1,10 @@
-package com.emiratesauction.spoonacularchatbot.core.data.local.dao
+package com.spoonacularchatbot.core.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.emiratesauction.spoonacularchatbot.core.data.local.model.QuestionEntity
+import com.spoonacularchatbot.core.data.local.model.QuestionEntity
 
 @Dao
 interface QuestionDao {
