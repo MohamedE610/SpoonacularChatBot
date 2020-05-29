@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -29,9 +30,55 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //dagger
+    kapt appDependencies.daggerCompiler
+    kapt appDependencies.daggerAndroidProcessor
+    implementation appDependencies.daggerAandroidSupport
+    implementation appDependencies.dagger
+    implementation appDependencies.daggerAndroid
+
+    //RxJava & RxAndroid
+    implementation appDependencies.rxjava
+    implementation appDependencies.rxAndroid
+    implementation appDependencies.rxKotlin
+
+    // Room components
+    implementation appDependencies.roomRuntime
+    implementation appDependencies.roomKtx
+    kapt appDependencies.roomCompiler
+
+    // Lifecycle components
+    implementation appDependencies.lifecycleExtensions
+    kapt appDependencies.lifecycleCompiler
+
+    // ViewModel Kotlin support
+    implementation appDependencies.viewmodelKtx
+
+    // UI Material Components
+    implementation appDependencies.materialComponents
+
+    // OkHttp, Retrofit
+    implementation appDependencies.okhttp
+    implementation appDependencies.okhttpLoggingInterceptor
+    implementation appDependencies.retrofit
+    implementation appDependencies.retrofitAdapterRxjava2
+
+    // glide
+    implementation appDependencies.glide
+    kapt appDependencies.glideCompiler
+
+    // parser
+    implementation appDependencies.gson
+    implementation appDependencies.retrofit2ConverterGson
+
+    implementation appDependencies.moshi
+    implementation appDependencies.moshiRetrofitConverter
+
+
 }
