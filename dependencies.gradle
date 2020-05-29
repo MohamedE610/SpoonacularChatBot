@@ -43,9 +43,6 @@ ext {
             lifecycleExtensions     : "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion",
             lifecycleCompiler       : "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion",
 
-            // ViewModel Kotlin support
-            viewmodelKtx            : "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion",
-
             // UI Material Components
             //implementation "com.google.android.material:material:$rootProject.materialVersion"
             materialComponents      : "com.google.android.material:material:$materialComponentsVersion",

@@ -24,6 +24,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -57,9 +62,6 @@ dependencies {
     implementation appDependencies.lifecycleExtensions
     kapt appDependencies.lifecycleCompiler
 
-    // ViewModel Kotlin support
-    implementation appDependencies.viewmodelKtx
-
     // UI Material Components
     implementation appDependencies.materialComponents
 
@@ -79,6 +81,5 @@ dependencies {
 
     implementation appDependencies.moshi
     implementation appDependencies.moshiRetrofitConverter
-
 
 }
