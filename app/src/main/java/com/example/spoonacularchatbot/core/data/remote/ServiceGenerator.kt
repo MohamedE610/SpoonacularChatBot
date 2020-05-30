@@ -18,7 +18,7 @@ class ServiceGenerator {
         serviceClass: Class<S>
     ): S {
 
-        val baseURL = "BuildConfig.BASE_URL"
+        val baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/"
 
         val httpClient = OkHttpClient.Builder()
         val builder = Retrofit.Builder()
@@ -37,15 +37,20 @@ class ServiceGenerator {
             .addConverterFactory(MoshiConverterFactory.create().asLenient().withNullSerialization())
             .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
 
-        val parametersInterceptor = Interceptor { chain ->
+        val headersInterceptor = Interceptor { chain ->
             val url = chain.request()
                 .url().newBuilder()
                 .build()
-            val request = chain.request().newBuilder().url(url).build()
+            val request = chain.request().newBuilder()
+                .addHeader("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
+                .addHeader("x-rapidapi-key", "3dca1f8cb3mshc883e879a62591ap17f44ajsn3bd4c7568c32")
+                .addHeader("useQueryString", "true")
+                .url(url)
+                .build()
             chain.proceed(request)
         }
 
-        httpClient.addInterceptor(parametersInterceptor)
+        httpClient.addInterceptor(headersInterceptor)
 
         builder.client(httpClient.build())
         val retrofit = builder.build()
