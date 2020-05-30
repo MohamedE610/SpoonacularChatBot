@@ -1,10 +1,6 @@
 package com.example.spoonacularchatbot.features.splash.presentation.viewmodel
 
-import android.content.Context
 import android.util.Log
-import com.example.spoonacularchatbot.R
-import com.example.spoonacularchatbot.core.data.local.model.Answer
-import com.example.spoonacularchatbot.core.data.local.model.QUESTION_ENUM
 import com.example.spoonacularchatbot.core.data.local.model.QuestionEntity
 import com.example.spoonacularchatbot.core.presentation.modelwraper.SingleLiveEvent
 import com.example.spoonacularchatbot.core.presentation.viewmodel.BaseViewModel
@@ -24,7 +20,7 @@ class SplashViewModel @Inject constructor(
     val qaGraphLiveData = SingleLiveEvent<QuestionEntity>()
 
     fun saveQAGraph(questionEntity: QuestionEntity) {
-        val disposable = saveQAGraphUseCase.excute(questionEntity)
+        val disposable = saveQAGraphUseCase.execute(questionEntity)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({
@@ -37,7 +33,7 @@ class SplashViewModel @Inject constructor(
     }
 
     fun deleteQAGraph() {
-        val disposable = deleteQAGraphUseCase.excute()
+        val disposable = deleteQAGraphUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({
@@ -51,7 +47,7 @@ class SplashViewModel @Inject constructor(
 
 
     fun getQAGraph() {
-        val disposable = getQAGraphUseCase.excute()
+        val disposable = getQAGraphUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({

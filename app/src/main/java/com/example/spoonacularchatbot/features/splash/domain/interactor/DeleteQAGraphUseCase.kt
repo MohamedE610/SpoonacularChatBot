@@ -4,5 +4,5 @@ import com.example.spoonacularchatbot.features.splash.domain.repository.QAReposi
 import javax.inject.Inject
 
 class DeleteQAGraphUseCase @Inject constructor(private val repository: QARepository) {
-    fun excute() = repository.deleteQAGraph()
+    fun execute() = repository.deleteQAGraph()
 }

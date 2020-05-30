@@ -5,5 +5,5 @@ import com.example.spoonacularchatbot.features.splash.domain.repository.QAReposi
 import javax.inject.Inject
 
 class SaveQAGraphUseCase @Inject constructor(private val repository: QARepository) {
-    fun excute(questionEntity: QuestionEntity) = repository.saveQAGraph(questionEntity)
+    fun execute(questionEntity: QuestionEntity) = repository.saveQAGraph(questionEntity)
 }
