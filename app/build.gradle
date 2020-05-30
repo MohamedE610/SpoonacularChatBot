@@ -81,5 +81,8 @@ dependencies {
 
     implementation appDependencies.moshi
     implementation appDependencies.moshiRetrofitConverter
+    kapt appDependencies.moshiCodegen
+
+    implementation appDependencies.lottie
 
 }

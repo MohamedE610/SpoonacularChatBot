@@ -20,6 +20,8 @@ ext {
     moshiVersion = "1.9.2"
     moshiRetrofitConverterVersion = "2.4.0"
 
+    lottieVersion = "2.8.0"
+
 
     appDependencies = [
             //dagger
@@ -62,7 +64,9 @@ ext {
             retrofit2ConverterGson  : "com.squareup.retrofit2:converter-gson:$retrofitAdapterRxjava2Version",
 
             moshi                   : "com.squareup.moshi:moshi:$moshiVersion",
-            moshiRetrofitConverter  : "com.squareup.retrofit2:converter-moshi:$moshiRetrofitConverterVersion"
+            moshiRetrofitConverter  : "com.squareup.retrofit2:converter-moshi:$moshiRetrofitConverterVersion",
+            moshiCodegen            : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
+            lottie                  : "com.airbnb.android:lottie:$lottieVersion"
 
     ]
 

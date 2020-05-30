@@ -5,7 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.spoonacularchatbot.core.data.local.db.DBConverters
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 @Entity(tableName = "QuestionEntity")
 data class QuestionEntity constructor(
 
@@ -15,6 +17,10 @@ data class QuestionEntity constructor(
     @ColumnInfo(name = "text")
     val text: String,
     @TypeConverters(DBConverters::class)
-    @ColumnInfo(name = "relatedQuestions")
-    val relatedQuestions: List<QuestionEntity>
+    @ColumnInfo(name = "type")
+    val type: QUESTION_ENUM,
+    @TypeConverters(DBConverters::class)
+    @ColumnInfo(name = "expectedAnswers")
+    val expectedAnswers: List<Answer>
 )
+

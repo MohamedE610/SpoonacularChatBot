@@ -4,16 +4,19 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
+import com.example.spoonacularchatbot.core.data.local.cache.QuestionsLocalDataSource
+import com.example.spoonacularchatbot.core.data.local.cache.QuestionsLocalDataSourceImpl
 import com.example.spoonacularchatbot.core.data.local.dao.QuestionDao
 import com.example.spoonacularchatbot.core.data.local.db.SpoonacularChatBotDB
 import com.example.spoonacularchatbot.core.presentation.common.AppConstants
 import com.example.spoonacularchatbot.core.presentation.di.qualifier.DatabaseInfo
 import com.example.spoonacularchatbot.core.presentation.di.qualifier.PreferenceInfo
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [AppModule.BindsModule::class])
 class AppModule {
 
     @Provides
@@ -61,5 +64,14 @@ class AppModule {
         database: SpoonacularChatBotDB
     ): QuestionDao {
         return database.questionDao()
+    }
+
+    @Module
+    interface BindsModule {
+        @Binds
+        @Singleton
+        fun bindQuestionsLocalDataSource(
+            questionsLocalDataSourceImpl: QuestionsLocalDataSourceImpl
+        ): QuestionsLocalDataSource
     }
 }

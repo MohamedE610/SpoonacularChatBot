@@ -9,6 +9,7 @@ import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
 class SpoonacularChatBotApp : Application(), HasActivityInjector {
+
     @Inject
     lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
@@ -18,6 +19,6 @@ class SpoonacularChatBotApp : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent.builder().application(this).build()
+        DaggerAppComponent.builder().application(this).build().inject(this)
     }
 }

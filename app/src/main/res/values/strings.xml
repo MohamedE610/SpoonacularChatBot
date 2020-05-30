@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">SpoonacularChatBot</string>
+
+    <string name="whats_ur_name">Hi, I\'m Chat bot.
+    I\'m here to help you to select next meal you will have.
+    what\'s your name ?</string>
+
+    <string name="do_you_like_it">Do you like recipes above ?</string>
+
+    <string name="intolerance_ingredient_question">Is there any ingredients that\'s caused a problem for you ?
+        if yes, please write them</string>
+
+    <string name="exclude_ingredient_question">Is there any ingredients that you don\'t like it ?
+        if yes, please write them</string>
+
+    <string name="are_you_vegetarian">Welcome, %1$s
+    I will ask you a series of questions to make sure you will have a great meal.
+    well, let\'s start
+        Are you vegetarian?</string>
+
+    <string name="vegetarian_type_question">Which kind of vegetarian ?
+      vegetarian or vegan</string>
+
+    <string name="cuisine_question">Which kind of cuisine  you prefer ?
+     italian, mexican, indian, middle eastern, american or japanese etc.</string>
+
+    <string name="main_ingredients_question">what are main ingredients you would like?
+        something like chicken with rice, beef with pasta, fish with soup
+        or something else like pizza, burger and etc.
+    </string>
+
+    <string name="vegetarian_main_ingredients_question">what are main ingredients you would like?
+        something like vegetable with rice, Lentil Soup, Peanut with  Noodles
+        or something else like pizza, burger, pasta and etc.
+    </string>
+
+
+    <string name="no_more_questions">no more questions</string>
+    <string name="lbl_yes">yes</string>
+    <string name="lbl_no">no</string>
+    <string name="lbl_any">any</string>
+
 </resources>
