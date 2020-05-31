@@ -9,6 +9,7 @@ import com.example.spoonacularchatbot.features.splash.domain.interactor.GetQAGra
 import com.example.spoonacularchatbot.features.splash.domain.interactor.SaveQAGraphUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.lang.NullPointerException
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
@@ -56,6 +57,8 @@ class SplashViewModel @Inject constructor(
                     Log.d("getQAGraph", "success")
                 }
             }, {
+                if (it is NullPointerException)
+                    qaGraphLiveEvent.value = null
                 Log.d("getQAGraph", "failed")
             })
 

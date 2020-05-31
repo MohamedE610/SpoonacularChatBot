@@ -14,8 +14,6 @@ ext {
     retrofitVersion = "2.7.2"
     retrofitAdapterRxjava2Version = "2.3.0"
     glideVersion = "4.9.0"
-    gsonVersion = "2.8.5"
-    retrofitConverterGsonVersion = "2.3.0"
 
     moshiVersion = "1.9.2"
     moshiRetrofitConverterVersion = "2.4.0"
@@ -59,13 +57,10 @@ ext {
             glide                   : "com.github.bumptech.glide:glide:$glideVersion",
             glideCompiler           : "com.github.bumptech.glide:compiler:$glideVersion",
 
-            // parser
-            gson                    : "com.google.code.gson:gson:$gsonVersion",
-            retrofit2ConverterGson  : "com.squareup.retrofit2:converter-gson:$retrofitAdapterRxjava2Version",
-
             moshi                   : "com.squareup.moshi:moshi:$moshiVersion",
             moshiRetrofitConverter  : "com.squareup.retrofit2:converter-moshi:$moshiRetrofitConverterVersion",
             moshiCodegen            : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
+
             lottie                  : "com.airbnb.android:lottie:$lottieVersion"
 
     ]

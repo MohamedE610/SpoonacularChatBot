@@ -34,16 +34,13 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         initViews()
         initObservers()
-        viewModel.saveQAGraph(qaGraphViewModel.generateQAGraph())
-        //viewModel.getQAGraph()
+        viewModel.getQAGraph()
     }
 
     private fun initObservers() {
         viewModel.qaGraphLiveEvent.observe(this,
             Observer {
-                it?.let {
-
-                } ?: viewModel.saveQAGraph(qaGraphViewModel.generateQAGraph())
+                it ?: viewModel.saveQAGraph(qaGraphViewModel.generateQAGraph())
             })
     }
 

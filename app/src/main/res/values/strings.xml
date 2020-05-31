@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">SpoonacularChatBot</string>
 
+    <string name="spoonacular_bot">Spoonacular Bot</string>
+
     <string name="whats_ur_name">Hi, I\'m Chat bot.
     I\'m here to help you to select next meal you will have.
     what\'s your name ?</string>
@@ -39,5 +41,6 @@
     <string name="lbl_yes">yes</string>
     <string name="lbl_no">no</string>
     <string name="lbl_any">any</string>
+    <string name="lbl_type_message">Type a message</string>
 
 </resources>
