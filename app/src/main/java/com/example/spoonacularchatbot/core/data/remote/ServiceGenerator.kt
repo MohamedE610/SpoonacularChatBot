@@ -1,7 +1,7 @@
 package com.example.spoonacularchatbot.core.data.remote
 
 import android.annotation.SuppressLint
-import com.bumptech.glide.BuildConfig
+import com.example.spoonacularchatbot.BuildConfig
 import com.example.spoonacularchatbot.core.data.remote.rxerrorhandling.RxErrorHandlingCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -18,7 +18,7 @@ class ServiceGenerator {
         serviceClass: Class<S>
     ): S {
 
-        val baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/"
+        val baseURL = BuildConfig.BASE_URL
 
         val httpClient = OkHttpClient.Builder()
         val builder = Retrofit.Builder()
@@ -42,8 +42,8 @@ class ServiceGenerator {
                 .url().newBuilder()
                 .build()
             val request = chain.request().newBuilder()
-                .addHeader("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
-                .addHeader("x-rapidapi-key", "3dca1f8cb3mshc883e879a62591ap17f44ajsn3bd4c7568c32")
+                .addHeader("x-rapidapi-host", BuildConfig.HOST)
+                .addHeader("x-rapidapi-key", BuildConfig.API_KEY)
                 .addHeader("useQueryString", "true")
                 .url(url)
                 .build()

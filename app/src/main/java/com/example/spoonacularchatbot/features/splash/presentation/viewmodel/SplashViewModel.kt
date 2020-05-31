@@ -17,7 +17,7 @@ class SplashViewModel @Inject constructor(
     private val deleteQAGraphUseCase: DeleteQAGraphUseCase
 ) : BaseViewModel() {
 
-    val qaGraphLiveData = SingleLiveEvent<QuestionEntity>()
+    val qaGraphLiveEvent = SingleLiveEvent<QuestionEntity>()
 
     fun saveQAGraph(questionEntity: QuestionEntity) {
         val disposable = saveQAGraphUseCase.execute(questionEntity)
@@ -52,7 +52,7 @@ class SplashViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .subscribe({
                 it?.let {
-                    qaGraphLiveData.value = it
+                    qaGraphLiveEvent.value = it
                     Log.d("getQAGraph", "success")
                 }
             }, {

@@ -39,7 +39,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-        viewModel.qaGraphLiveData.observe(this,
+        viewModel.qaGraphLiveEvent.observe(this,
             Observer {
                 it?.let {
 
