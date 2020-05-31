@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark"
-    tools:context=".features.chatbot.presentation.view.ChatBotActivity">
+    tools:context=".features.chatbot.presentation.view.activity.ChatBotActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarChatBot"

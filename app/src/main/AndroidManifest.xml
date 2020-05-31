@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.chatbot.presentation.view.ChatBotActivity"
+        <activity android:name=".features.chatbot.presentation.view.activity.ChatBotActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>

@@ -10,14 +10,15 @@ abstract class SimpleBaseAdapter<T, VH : SimpleBaseViewHolder<T>> : RecyclerView
     val data = arrayListOf<T>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val view = LayoutInflater.from(parent.context).inflate(getLayoutResourceId(), parent, false)
-        return getViewHolder(view)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(getLayoutResourceId(viewType), parent, false)
+        return getViewHolder(view, viewType)
     }
 
-    protected abstract fun getViewHolder(view: View): VH
+    protected abstract fun getViewHolder(view: View, viewType: Int): VH
 
     @LayoutRes
-    protected abstract fun getLayoutResourceId(): Int
+    protected abstract fun getLayoutResourceId(viewType: Int): Int
 
     override fun getItemCount(): Int {
         return data.size
@@ -28,6 +29,6 @@ abstract class SimpleBaseAdapter<T, VH : SimpleBaseViewHolder<T>> : RecyclerView
     }
 }
 
-abstract class SimpleBaseViewHolder<T> constructor(view: View) : RecyclerView.ViewHolder(view) {
+abstract  class SimpleBaseViewHolder<T> constructor(view: View) : RecyclerView.ViewHolder(view) {
     abstract fun bind(item: T)
 }
