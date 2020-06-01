@@ -3,44 +3,69 @@
 
     <string name="spoonacular_bot">Spoonacular Bot</string>
 
-    <string name="whats_ur_name">Hi, I\'m Chat bot.
-    I\'m here to help you to select next meal you will have.
-    what\'s your name ?</string>
+    <!-- "-" messages separator -->
+    <string name="whats_ur_name">"Hi, I\'m Chat bot.
+-I\'m here to help you to select next meal you will have.
+-what\'s your name ?"</string>
+
 
     <string name="do_you_like_it">Do you like recipes above ?</string>
 
-    <string name="intolerance_ingredient_question">Is there any ingredients that\'s caused a problem for you ?
-        if yes, please write them</string>
+    <!-- "-" messages separator -->
+    <string name="intolerance_ingredient_question">"Is there any ingredients that\'s caused a problem for you ?
+-if yes, please write them"</string>
 
-    <string name="exclude_ingredient_question">Is there any ingredients that you don\'t like it ?
-        if yes, please write them</string>
+    <!-- "-" messages separator -->
+    <string name="exclude_ingredient_question">"Is there any ingredients that you don\'t like it ?
+-if yes, please write them"</string>
 
-    <string name="are_you_vegetarian">Welcome, %1$s
-    I will ask you a series of questions to make sure you will have a great meal.
-    well, let\'s start
-        Are you vegetarian?</string>
+    <!-- "-" messages separator -->
+    <string name="are_you_vegetarian">"Welcome, %1$s
+-I will ask you a series of questions to make sure you will have a great meal.
+-well, let\'s start.
+-Are you vegetarian?"</string>
 
-    <string name="vegetarian_type_question">Which kind of vegetarian ?
-      vegetarian or vegan</string>
+    <!-- "-" messages separator -->
+    <string name="vegetarian_type_question">"Which kind of vegetarian ?
+-vegetarian or vegan"</string>
 
-    <string name="cuisine_question">Which kind of cuisine  you prefer ?
-     italian, mexican, indian, middle eastern, american or japanese etc.</string>
+    <!-- "-" messages separator -->
+    <string name="cuisine_question">"Which kind of cuisine  you prefer ?
+-italian, mexican, indian, middle eastern, american or japanese etc."</string>
 
-    <string name="main_ingredients_question">what are main ingredients you would like?
-        something like chicken with rice, beef with pasta, fish with soup
-        or something else like pizza, burger and etc.
+    <!-- "-" messages separator -->
+    <string name="main_ingredients_question">"what are main ingredients you would like?
+-something like chicken with rice, beef with pasta, fish with soup
+or something else like pizza, burger and etc."
     </string>
 
-    <string name="vegetarian_main_ingredients_question">what are main ingredients you would like?
-        something like vegetable with rice, Lentil Soup, Peanut with  Noodles
-        or something else like pizza, burger, pasta and etc.
+    <!-- "-" messages separator -->
+    <string name="vegetarian_main_ingredients_question">"what are main ingredients you would like?
+-something like vegetable with rice, Lentil Soup, Peanut with  Noodles
+or something else like pizza, burger, pasta and etc."
     </string>
-
 
     <string name="no_more_questions">no more questions</string>
     <string name="lbl_yes">yes</string>
     <string name="lbl_no">no</string>
     <string name="lbl_any">any</string>
     <string name="lbl_type_message">Type a message</string>
+    <string name="recipe_message">Here are some very delicious recipes for you.</string>
+    <string name="empty_recipe_message">"Sorry, I couldn\'t  find a suitable recipe for you.
+-let's try again"</string>
+    <string name="do_you_like_it_yes">"That\'s great.
+-enjoy with your delicious meal.
+-See you later.
+-Bye."</string>
+    <string name="do_you_like_it_no">"Okay
+-let's try again"</string>
+    <string name="general_error_msg">Oops, something went wrong</string>
+    <string name="network_error_msg">Please, check your internet connection</string>
 
+    <string-array name="approval_expressions">
+        <item>sure</item>
+        <item>of course</item>
+        <item>definitely</item>
+        <item>certainly</item>
+    </string-array>
 </resources>

@@ -67,7 +67,7 @@ class RecipesMessageViewHolder constructor(view: View) :
         if (item is RecipesMessage) {
             itemView.tvChatBotMessage.text = item.text
             itemView.rvChatBotRecipes.layoutManager =
-                LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+                LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
             val adapter = RecipesAdapter(item.recipeResponse.baseUri)
             adapter.data.addAll(item.recipeResponse.recipes)
             itemView.rvChatBotRecipes.adapter = adapter

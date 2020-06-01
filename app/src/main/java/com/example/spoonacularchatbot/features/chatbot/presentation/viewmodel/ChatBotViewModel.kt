@@ -23,6 +23,11 @@ class ChatBotViewModel @Inject constructor(
     private val getQAGraphUseCase: GetQAGraphUseCase
 ) : BaseViewModel() {
 
+    var recipesParams: RecipesParams = RecipesParams()
+    var nextQuestion: QuestionEntity? = null
+    // cache last user message to use it when internet connection back
+    var lastUserMessage = ""
+
     val qaGraphLiveEvent = SingleLiveEvent<QuestionEntity>()
     val recipesObservableResource = ObservableResource<RecipesResponse>()
     val foodInTextObservableResource = ObservableResource<FoodResponse>()
@@ -72,6 +77,7 @@ class ChatBotViewModel @Inject constructor(
             .subscribe({
                 it?.let {
                     qaGraphLiveEvent.value = it
+                    nextQuestion = it
                     Log.d("getQAGraph", "success")
                 }
             }, {

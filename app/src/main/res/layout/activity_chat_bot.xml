@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/dark"
     tools:context=".features.chatbot.presentation.view.activity.ChatBotActivity">
 
@@ -17,7 +18,8 @@
             android:id="@+id/toolBarChatBot"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/dark">
+            android:background="@color/dark"
+            app:theme="@style/ToolbarTheme">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -27,6 +29,8 @@
                     android:id="@+id/imgChatBot"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:src="@drawable/ic_chat_bot"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +57,6 @@
         android:id="@+id/rvChatBotMessages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/clChatBotFooter"
         app:layout_constraintTop_toBottomOf="@+id/appBarChatBot"
         tools:listitem="@layout/item_chat_bot_message" />
@@ -87,9 +90,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/bg_gray_rounded"
             android:hint="@string/lbl_type_message"
             android:inputType="textMultiLine"

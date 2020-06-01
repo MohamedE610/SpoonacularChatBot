@@ -15,7 +15,7 @@ data class QuestionEntity constructor(
     @ColumnInfo(name = "id")
     val id: Int,
     @ColumnInfo(name = "text")
-    val text: String,
+    var text: String,
     @TypeConverters(DBConverters::class)
     @ColumnInfo(name = "type")
     val type: QUESTION_ENUM,

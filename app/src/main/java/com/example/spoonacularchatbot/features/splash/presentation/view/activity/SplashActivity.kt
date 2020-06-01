@@ -1,6 +1,7 @@
 package com.example.spoonacularchatbot.features.splash.presentation.view.activity
 
 import android.animation.Animator
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.spoonacularchatbot.R
 import com.example.spoonacularchatbot.core.presentation.extensions.showShortToast
 import com.example.spoonacularchatbot.core.presentation.viewmodel.ViewModelFactory
+import com.example.spoonacularchatbot.features.chatbot.presentation.view.activity.ChatBotActivity
 import com.example.spoonacularchatbot.features.splash.presentation.viewmodel.QAGraphViewModel
 import com.example.spoonacularchatbot.features.splash.presentation.viewmodel.SplashViewModel
 import dagger.android.AndroidInjection
@@ -48,11 +50,17 @@ class SplashActivity : AppCompatActivity() {
         lottieAnimationView.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(p0: Animator?) {}
             override fun onAnimationEnd(p0: Animator?) {
-                showShortToast("Navigate")
+                navigateToChatBotActivity()
             }
 
             override fun onAnimationCancel(p0: Animator?) {}
             override fun onAnimationStart(p0: Animator?) {}
         })
+    }
+
+    private fun navigateToChatBotActivity() {
+        val intent = Intent(this, ChatBotActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

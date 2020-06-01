@@ -13,7 +13,7 @@ interface SpoonacularApi {
         @Query("diet") diet: String? = null,
         @Query("excludeIngredients") excludeIngredients: String? = null,
         @Query("intolerances") intolerance: String? = null,
-        @Query("number") number: Int = 5
+        @Query("number") number: Int = 10
     ): Single<RecipesResponse>
 
     @FormUrlEncoded
