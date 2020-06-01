@@ -12,8 +12,10 @@ import com.example.spoonacularchatbot.core.data.local.model.QUESTION_ENUM
 import com.example.spoonacularchatbot.core.data.local.model.QuestionEntity
 import com.example.spoonacularchatbot.core.data.local.model.Vegetarian_Enum
 import com.example.spoonacularchatbot.core.presentation.common.InternetConnectivityListener
+import com.example.spoonacularchatbot.core.presentation.extensions.hide
 import com.example.spoonacularchatbot.core.presentation.extensions.isInternetAvailable
 import com.example.spoonacularchatbot.core.presentation.extensions.showShortToast
+import com.example.spoonacularchatbot.core.presentation.extensions.visible
 import com.example.spoonacularchatbot.core.presentation.viewmodel.ViewModelFactory
 import com.example.spoonacularchatbot.features.chatbot.data.model.FoodResponse
 import com.example.spoonacularchatbot.features.chatbot.data.model.RecipesResponse
@@ -21,6 +23,7 @@ import com.example.spoonacularchatbot.features.chatbot.presentation.model.*
 import com.example.spoonacularchatbot.features.chatbot.presentation.view.adapter.MessageSuggestionAdapter
 import com.example.spoonacularchatbot.features.chatbot.presentation.view.adapter.MessagesAdapter
 import com.example.spoonacularchatbot.features.chatbot.presentation.viewmodel.ChatBotViewModel
+import com.example.spoonacularchatbot.features.chatbot.presentation.viewmodel.MessagesSuggestionsViewModel
 import com.example.spoonacularchatbot.features.chatbot.presentation.viewmodel.UserAnswerViewModel
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_chat_bot.*
@@ -44,6 +47,16 @@ class ChatBotActivity : AppCompatActivity() {
 
     private val userAnswerViewModel by lazy {
         ViewModelProvider(this, userAnswerViewModelFactory).get(UserAnswerViewModel::class.java)
+    }
+
+    @Inject
+    lateinit var messageSuggestionViewModelFactory: ViewModelFactory<MessagesSuggestionsViewModel>
+
+    private val msgSuggestionsViewModel by lazy {
+        ViewModelProvider(
+            this,
+            messageSuggestionViewModelFactory
+        ).get(MessagesSuggestionsViewModel::class.java)
     }
 
     private val messagesAdapter = MessagesAdapter()
@@ -167,6 +180,7 @@ class ChatBotActivity : AppCompatActivity() {
     // endregion initObservers
 
     //region initViews
+
     private fun initViews() {
         setUpToolbar()
         setUpMessagesRecyclerViews()
@@ -186,6 +200,7 @@ class ChatBotActivity : AppCompatActivity() {
         if (TextUtils.isEmpty(etChatBot.text))
             return
 
+        rvChatBotSuggestions.hide()
         val message = etChatBot.text.toString()
         chatBotViewModel.lastUserMessage = message
         etChatBot.setText("")
@@ -204,6 +219,12 @@ class ChatBotActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvChatBotMessages.adapter = messagesAdapter
     }
+
+    private fun resetMessageAdapter() {
+        messagesAdapter.data.clear()
+        messagesAdapter.notifyDataSetChanged()
+    }
+
     //endregion initViews
 
     // region sendMessage
@@ -229,22 +250,12 @@ class ChatBotActivity : AppCompatActivity() {
             chatBotViewModel.nextQuestion?.expectedAnswers!![0].relatedQuestion
 
         chatBotViewModel.nextQuestion?.let {
-            Handler().postDelayed({ sendChatBotMessage(it) }, DELAY_6000MS)
+            Handler().postDelayed({ sendChatBotMessage(it) }, DELAY_4000MS)
         }
     }
 
     private fun sendChatBotMessage(questionEntity: QuestionEntity) {
-        val dateTime = Calendar.getInstance().timeInMillis
-        val messages = questionEntity.text.split("-")
-        for ((i, msg) in messages.withIndex()) {
-            val message =
-                ChatBotMessage(id = dateTime.toInt(), text = msg.trim(), dateTime = dateTime)
-
-            if (messages.size > 1)
-                Handler().postDelayed({ sendMessage(message) }, DELAY_500MS * (i + 1))
-            else
-                Handler().postDelayed({ sendMessage(message) }, DELAY_1000MS)
-        }
+        sendChatBotMessage(questionEntity.text)
     }
 
     private fun sendChatBotMessage(text: String) {
@@ -259,6 +270,13 @@ class ChatBotActivity : AppCompatActivity() {
             else
                 Handler().postDelayed({ sendMessage(message) }, DELAY_1000MS)
         }
+        if (messages.size > 1)
+            Handler().postDelayed({ generateMessageSuggestions() }, DELAY_500MS * messages.size)
+        else
+            Handler().postDelayed(
+                { generateMessageSuggestions() },
+                (DELAY_1000MS * messages.size) + DELAY_500MS
+            )
     }
 
     private fun sendUserMessage(msg: String) {
@@ -281,6 +299,11 @@ class ChatBotActivity : AppCompatActivity() {
     // region check user answers
 
     private fun checkUserMessage(message: String) {
+        // one case when chat finish between bot and user
+        if (chatBotViewModel.nextQuestion == null) {
+            checkContinueChatAnswer(message)
+            return
+        }
         if (chatBotViewModel.nextQuestion?.expectedAnswers?.size == 0)
             return
 
@@ -314,12 +337,22 @@ class ChatBotActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkContinueChatAnswer(message: String) {
+        if (message == getString(R.string.ask_about_another_recipe)) {
+            startAskQuestionFromMainIngredients()
+        } else if (message == getString(R.string.start_chat_from_beginning)) {
+            chatBotViewModel.nextQuestion = chatBotViewModel.qaGraphLiveEvent.value!!
+            chatBotViewModel.nextQuestion?.let { startChat(it) }
+            resetMessageAdapter()
+        }
+    }
+
 
     private fun checkDoYouLikeItAnswer(message: String) {
         val isUserLikeRecipes = userAnswerViewModel.checkDoYouLikeItAnswer(message)
         if (isUserLikeRecipes) {
-            sendChatBotMessage(getString(R.string.do_you_like_it_yes))
             chatBotViewModel.nextQuestion = null
+            sendChatBotMessage(getString(R.string.do_you_like_it_yes))
         } else {
             sendChatBotMessage(getString(R.string.do_you_like_it_no))
             startAskQuestionFromMainIngredients()
@@ -384,7 +417,8 @@ class ChatBotActivity : AppCompatActivity() {
     private fun checkVegetarianTypeAnswer(message: String) {
         val answer = userAnswerViewModel.checkVegetarianTypeAnswer(message)
         if (answer == Vegetarian_Enum.NONE) {
-            //TODO wrong answer
+            sendChatBotMessage(getString(R.string.wrong_answer_msg))
+            sendChatBotMessage("Which kind of vegetarian ?")
         } else {
             chatBotViewModel.recipesParams.diet = answer.name
             chatBotViewModel.nextQuestion =
@@ -408,7 +442,8 @@ class ChatBotActivity : AppCompatActivity() {
                 chatBotViewModel.nextQuestion?.let { sendChatBotMessage(it) }
             }
             else -> {
-                //TODO wrong answer
+                sendChatBotMessage(getString(R.string.wrong_answer_msg))
+                sendChatBotMessage("Are you Vegetarian ?")
             }
         }
 
@@ -416,7 +451,10 @@ class ChatBotActivity : AppCompatActivity() {
 
     private fun getUserNameFromMessage(message: String) {
         val username = userAnswerViewModel.getUserNameFromMessage(message)
-
+        if (!username.matches(Regex("^[A-Za-z]+$"))) {
+            sendChatBotMessage(getString(R.string.plz_tell_me_only_ur_first_name))
+            return
+        }
         chatBotViewModel.nextQuestion =
             chatBotViewModel.nextQuestion?.expectedAnswers!![0].relatedQuestion
 
@@ -426,12 +464,52 @@ class ChatBotActivity : AppCompatActivity() {
         chatBotViewModel.nextQuestion?.let { sendChatBotMessage(it) }
     }
 
+    // endregion check user answers
 
-    private fun onMessageSuggestItemClicked(message: SuggestionMessage) {
+    //region message suggestions
 
+    private fun generateMessageSuggestions() {
+        val nextQuestion = chatBotViewModel.nextQuestion
+        if (nextQuestion == null) {
+            val msgSuggestions = msgSuggestionsViewModel.generateContinueChatMessageSuggestions()
+            showMessageSuggestionsToUser(msgSuggestions)
+            return
+        }
+
+        when (nextQuestion.type) {
+            QUESTION_ENUM.R_U_VEGETARIAN, QUESTION_ENUM.DO_YOU_LIKE_IT -> {
+                val msgSuggestions = msgSuggestionsViewModel.generateYesNoMessageSuggestions()
+                showMessageSuggestionsToUser(msgSuggestions)
+            }
+            QUESTION_ENUM.VEGETARIAN_TYPE -> {
+                val msgSuggestions =
+                    msgSuggestionsViewModel.generateVegetarianTypesMessageSuggestions()
+                showMessageSuggestionsToUser(msgSuggestions)
+            }
+            QUESTION_ENUM.CUISINE -> {
+                val msgSuggestions =
+                    msgSuggestionsViewModel.generateCuisineTypesMessageSuggestions()
+                showMessageSuggestionsToUser(msgSuggestions)
+            }
+            else -> Unit
+        }
     }
 
-    // endregion check user answers
+    private fun onMessageSuggestItemClicked(message: SuggestionMessage) {
+        sendUserMessage(message.text)
+        checkUserMessage(message.text)
+        rvChatBotSuggestions.hide()
+    }
+
+    private fun showMessageSuggestionsToUser(msgSuggestions: List<SuggestionMessage>) {
+        rvChatBotSuggestions.visible()
+        messageSuggestionAdapter.data.clear()
+        messageSuggestionAdapter.data.addAll(msgSuggestions)
+        messageSuggestionAdapter.notifyDataSetChanged()
+        rvChatBotMessages.scrollToPosition(messagesAdapter.data.size - 1)
+    }
+
+    //endregion message suggestion
 
 
     override fun onSupportNavigateUp(): Boolean {
@@ -454,6 +532,6 @@ class ChatBotActivity : AppCompatActivity() {
     companion object {
         const val DELAY_500MS: Long = 500
         const val DELAY_1000MS: Long = 1000
-        const val DELAY_6000MS: Long = 6000
+        const val DELAY_4000MS: Long = 4000
     }
 }

@@ -25,6 +25,7 @@ class ChatBotViewModel @Inject constructor(
 
     var recipesParams: RecipesParams = RecipesParams()
     var nextQuestion: QuestionEntity? = null
+
     // cache last user message to use it when internet connection back
     var lastUserMessage = ""
 
@@ -76,8 +77,8 @@ class ChatBotViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .subscribe({
                 it?.let {
-                    qaGraphLiveEvent.value = it
                     nextQuestion = it
+                    qaGraphLiveEvent.value = it
                     Log.d("getQAGraph", "success")
                 }
             }, {

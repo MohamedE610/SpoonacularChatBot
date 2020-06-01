@@ -24,8 +24,6 @@ data class RecipesMessage constructor(
 
 
 data class SuggestionMessage(
-    val id: Int,
     val text: String,
-    val dateTime: Long,
     var isSelected: Boolean
 )

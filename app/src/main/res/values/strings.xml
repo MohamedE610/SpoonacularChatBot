@@ -59,8 +59,14 @@ or something else like pizza, burger, pasta and etc."
 -Bye."</string>
     <string name="do_you_like_it_no">"Okay
 -let's try again"</string>
+
+    <string name="start_chat_from_beginning">Start chat for beginning</string>
+    <string name="ask_about_another_recipe">Ask about another recipe</string>
     <string name="general_error_msg">Oops, something went wrong</string>
     <string name="network_error_msg">Please, check your internet connection</string>
+    <string name="plz_tell_me_only_ur_first_name">Please, tell me only your first name</string>
+    <string name="wrong_answer_msg">Sorry, I didn\'t understand well.
+-Please, checkout the following options</string>
 
     <string-array name="approval_expressions">
         <item>sure</item>

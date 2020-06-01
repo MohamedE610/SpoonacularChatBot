@@ -16,19 +16,21 @@ enum class QUESTION_ENUM {
 enum class Vegetarian_Enum {
     Vegetarian,
     Vegan,
+    Pescetarian,
     Ovo_Vegetarian,
     Lacto_Vegetaria,
-    Pescetarian,
     NONE
 }
 
 
 enum class Cuisine_Enum {
-    middle_eastern,
     italian,
-    mexican,
-    french,
+    indian,
     american,
     japanese,
-    indian
+    mexican,
+    french,
+    middle_eastern,
+    nothing
+
 }

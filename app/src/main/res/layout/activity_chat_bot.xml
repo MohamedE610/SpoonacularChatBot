@@ -57,7 +57,7 @@
         android:id="@+id/rvChatBotMessages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/clChatBotFooter"
+        app:layout_constraintBottom_toTopOf="@+id/rvChatBotSuggestions"
         app:layout_constraintTop_toBottomOf="@+id/appBarChatBot"
         tools:listitem="@layout/item_chat_bot_message" />
 
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/clChatBotFooter"
-        tools:visibility="gone" />
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clChatBotFooter"
