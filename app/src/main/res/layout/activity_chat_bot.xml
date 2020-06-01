@@ -53,6 +53,7 @@
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChatBotMessages"
         android:layout_width="match_parent"
@@ -69,11 +70,23 @@
         app:layout_constraintBottom_toTopOf="@+id/clChatBotFooter"
         tools:visibility="visible" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimChatTyping"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/clChatBotFooter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/chat_typing_indicator" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clChatBotFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent">
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabChatBotSend"

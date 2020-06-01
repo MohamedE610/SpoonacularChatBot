@@ -163,7 +163,10 @@ class ChatBotActivity : AppCompatActivity() {
     }
 
     private fun showLoading(it: Boolean) {
-
+        if (it)
+            lottieAnimChatTyping.visible()
+        else
+            lottieAnimChatTyping.hide()
     }
 
     private fun showError() {

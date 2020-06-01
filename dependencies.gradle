@@ -18,7 +18,7 @@ ext {
     moshiVersion = "1.9.2"
     moshiRetrofitConverterVersion = "2.4.0"
 
-    lottieVersion = "2.8.0"
+    lottieVersion = "3.4.0"
 
 
     appDependencies = [
